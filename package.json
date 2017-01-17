@@ -1,0 +1,19 @@
+{
+  "name": "lab03-debugging",
+  "version": "1.0.0",
+  "description": "Software Architecture lab on the vscode debugger, source maps and vscode tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/info498e-w17/lab03-debugging.git"
+  },
+  "author": "Ethan Anderson, Luis Naranjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/info498e-w17/lab03-debugging/issues"
+  },
+  "homepage": "https://github.com/info498e-w17/lab03-debugging#readme"
+}
