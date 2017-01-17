@@ -129,3 +129,6 @@ Your launch.json should look like this:
     ]
 }
 ```
+
+### Submission
+To recieve credit for this lab, turn in a link to your repository in the Lab3 assignment on Canvas *[here](https://canvas.uw.edu/courses/1100150/assignments/3580975)*
