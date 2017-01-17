@@ -1,9 +1,39 @@
 # Lab 03 -- Debugging
-In this lab we will be going over the built in debugger in vscode, and how to debug typescript by using source maps.
+## Overview
+> "If debugging is the process of removing software bugs, then programming must be the process of putting them in." - Edsger Dijkstra 
+
+Finding and removing errors in programs ("debugging") is probably the most common, most important, and most difficult task in implementing computer programs. Luckliy, there are plenty of tried and true methods to help identify errors, and VS Code is able to offer further support. 
+
+* Fun fact: The word "debug" was coined by Dr. Grace Hopper when she was working on the Mark II computer back in 1947. A moth a moth was discovered inside the computer, interfering with a relay and keeping it from working. Removing the moth ("debugging", as Dr. Hopper called it) fixed the computer. 
+
+This lab will walk you through the debugging process and how to use the VS Code debugger, and how to use source maps to debug Typescript. Note that while you may be able to find and fix the bugs on your own, you should try and use the debugger so that you are familiar with the Eclipse tools (which can be really helpful later!). 
+
+## Objectives
+* To review and practice debugging techniques
+* To learn to set up and use the VS Code debugger
+* Debug Typescript by using source maps
+
+## Necessary Files
+You will need to **fork** and **clone** [this repository](https://github.com/info498e-w17/lab03-debugging) and open the folder in VS Code.
+
+## Debugging Techniques
+>"The most effective debugging tool is still careful thought, coupled with judiciously placed print statements." - Brian Kernighan, "Unix for Beginners" (1979) 
+
+The above quote from Brian Kernighan (one of the inventors of the C language) remains true in that--print statement debugging can be one of the most effective methods of debugging a program. Or at least one of your professors' favorite methods. The basic idea is thus: in order to figure out whether a program is working, we need to know what the program is doing. Which means we want to know things like the value of variables at any particular time, whether or not we've gotten into a particular method or loop, etc. This can be fairly intuitive process--basically if you want to know about something your program is doing, just put a print statement to tell you! 
+
+Some hints for doing print-statement debugging
 
 
-## VS Code Debugger
-Visual Studio code has a built in debugger, which can be used to debug anything that is run with node.js. It also has extensions that can be used to debug other languages like Go or Python.
+* Put the print statement as close as possible to the problem code (generally right before the line that breaks); this will let you see what the program was doing right before it crashed.
+* "in methodName", "inside for loop" "inside if statement" are also good things to print out.
+* I like putting "***DEBUG***" in big letters before my output String; it makes it easier to see the debug messages if you have a lot of output being printed.
+* Be sure and comment out and delete your print statements once you're finished!
+
+
+## Debugging Techniques - The VS Code Debugger
+ The main goal of using print statement debugging is to be able to "inspect" the current state of the program as it is running--to get a sense for what code is being executed when and how often, and what the values of variables are at any particular moment.
+
+However, this kind of inspection can be automed with VS Code's Debugger, a tool built in, which can be used to debug anything that is run with node.js. It also has extensions that can be used to debug other languages like Go or Python.
 
 ### Debug View
 
@@ -17,7 +47,7 @@ The Debug view displays all information related to debugging and has a top bar w
 To debug your app in VS Code, you'll first need to set up your launch configuration file - launch.json. Click on the Configure gear icon on the Debug view top bar, choose Node.js. VS Code will automatically create a launch.json file in a .vscode folder in the directory of your workspace.
 
 It should look like this:
-```
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -38,10 +68,10 @@ It should look like this:
 }
 
 ```
-Change the program field to `"program": "${workspaceRoot}/lab03-part1.js"`, this tells the debugger which is your main file.
+Change the program field to `"program": "${workspaceRoot}/lab03-tutorial.js"`, this tells the debugger which is your main file. "${workspaceRoot}" is just a local variable that refers to the current folder that is open in VS Code.
 
 ### Setting Breakpoints
-Open the lab03-part1.js file and you'll see a simple example of TODO 
+Open the lab03-tutorial.js file and you'll see a simple example of
 
 ### Inspect your program's state and variables
 
@@ -61,7 +91,3 @@ http://www.mattzeunert.com/2016/02/14/how-do-source-maps-work.html
 In order to tell tsc to include source maps, you need to modify the tsconfig.json file. Open the tsconfig.json file and set: `"sourceMap": true`
 
 Now run tsc
-
-
-
-
