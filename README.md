@@ -68,7 +68,7 @@ It should look like this:
 }
 
 ```
-Change the program field to `"program": "${workspaceRoot}/lab03-tutorial.js"`, this tells the debugger which is your main file. "${workspaceRoot}" is just a local variable that refers to the current folder that is open in VS Code.
+Change the program field to `"program": "${workspaceRoot}/src/lab03-tutorial.js"`, this tells the debugger which is your main file. "${workspaceRoot}" is just a local variable that refers to the current folder that is open in VS Code.
 
 ### Setting Breakpoints
 Open the lab03-tutorial.js file and you'll see a simple example of
@@ -78,16 +78,50 @@ Open the lab03-tutorial.js file and you'll see a simple example of
 ### Stepping Through Source Code
 
 ## Debugging Typescript
-In this example we will be using the lab03-part2.ts file. Provided is an implementation of 
+In this section we will see how to get the debugger to look at Typescript files, giving you the ability to set breakpoints in a .ts file directly.
 
 ### Javascript Source Maps
 Because the source code that you write in Typescript isn't the same code that is run by Node, it can be hard to debug. This is solved by source maps!
 
 Source maps are a handy way of showing how the compiled Javascript code is related to your original Typescript source code. The debugger can then show the original code you wrote, while actually running the compiled code.
 
-http://www.mattzeunert.com/2016/02/14/how-do-source-maps-work.html
-
 ### Compiler Configurations
 In order to tell tsc to include source maps, you need to modify the tsconfig.json file. Open the tsconfig.json file and set: `"sourceMap": true`
 
-Now run tsc
+Now run tsc in your workspace and look in the build folder. You will see that there are files ending in .js.map for every javascript file that was compiled. Understanding how the mappings are done is outside the scope of this class, but feel free to read more *[here](http://www.mattzeunert.com/2016/02/14/how-do-source-maps-work.html)*.
+
+### Launch Configurations
+In an earlier section we set up the launch.json configuration in the .vscode folder. These settings only work for debugging .js files, but with a few added settings we can get the debugger to associate the compiled files witih the source files by using the source maps.
+
+First change the program field to set stringBuilder.ts as your main: `"program": "${workspaceRoot}/src/stringBuilder.ts"`.
+
+Next you need to set sourceMaps to true: `"sourceMaps": true`
+
+Finally you need to tell the debugger to look at all the javascript files in build by using a glob. Set this here:
+```json
+"outFiles": [
+                "${workspaceRoot}/build/*.js"
+            ]
+```
+            
+Your launch.json should look like this: 
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/src/stringBuilder.ts",
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/build/*.js"
+            ]
+        },
+        ...
+    ]
+}
+```
