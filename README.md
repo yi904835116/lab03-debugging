@@ -71,11 +71,15 @@ It should look like this:
 Change the program field to `"program": "${workspaceRoot}/src/lab03-tutorial.js"`, this tells the debugger which is your main file. "${workspaceRoot}" is just a local variable that refers to the current folder that is open in VS Code.
 
 ### Setting Breakpoints
-Open the lab03-tutorial.js file and you'll see a simple example of
-
-### Inspect your program's state and variables
-
+Open the lab03-tutorial.js file and you'll see a simple **js** program that is already written for you. Your task is to use breakpoints to practice using the debugger. Later you will practice with a **ts** file.
+ 
+You need to set a breakpoint which will tell the debugger which line of code to "freeze" the program at. You should pick a line before the sum(n) function gets called. To set a breakpoint, click just to the left of the line number you are targetting. You should see a red stop sign appear.
+ 
 ### Stepping Through Source Code
+ 
+Click on the debug icon to the left of the VS Code window. Click on the play button. If your settings are configured correctly, you should see a window at the bottom of VS code appear called "Debug Console". This is where you can see your program's output as it runs.
+ 
+Use the arrows in the debug bar at the top of the window to "step into" the sum function. If you don't know what the difference between step into and step over, play around with both of them until you figure it out.
 
 ## Debugging Typescript
 In this section we will see how to get the debugger to look at Typescript files, giving you the ability to set breakpoints in a .ts file directly.
